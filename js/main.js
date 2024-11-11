@@ -3,7 +3,6 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true,
   canvas: canvasContainer,
 });
-renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
