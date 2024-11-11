@@ -21,7 +21,7 @@ pointLight.position.set(-5, 5, 5);
 scene.add(pointLight);
 
 const loader = new THREE.GLTFLoader();
-loader.load("/assets/scene.gltf", (gltf) => {
+loader.load("./assets/scene.gltf", (gltf) => {
   const model = gltf.scene;
   model.scale.set(1, 1, 1);
   model.position.y = 1;
