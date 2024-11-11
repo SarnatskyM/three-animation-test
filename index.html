@@ -7,12 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div class="header" id="header">
-      <a class="link" id="mex" href="#">Mex</a>
-      <a class="link" id="edo" href="#">Edo</a>
-      <a class="link" id="andrey" href="#">Andrey</a>
-      <a class="link" id="hetag" href="#">Hetag</a>
-      <a class="link" id="hetag" href="#">Renat</a>
+    <div class="container">
+      <div class="model-view" id="canvas-container">
+        <canvas id="canvas"></canvas>
+      </div>
+      <div class="sidebar">
+        <div class="header" id="header">
+          <a class="link" id="mex" href="#">Mex</a>
+          <a class="link" id="edo" href="#">Edo</a>
+          <a class="link" id="andrey" href="#">Andrey</a>
+          <a class="link" id="hetag" href="#">Hetag</a>
+          <a class="link" id="renat" href="#">Renat</a>
+        </div>
+        <div id="controls">
+          <label for="light-intensity">Яркость света</label>
+          <input
+            type="range"
+            id="light-intensity"
+            min="0"
+            max="2"
+            step="0.1"
+            value="1"
+          />
+          <label for="light-color">Цвет света</label>
+          <input type="color" id="light-color" value="#ffffff" />
+        </div>
+        <div id="model-info">
+          <h2 id="model-name">Название модели</h2>
+          <p id="model-description">Описание модели...</p>
+        </div>
+        <button id="reset">Сбросить модель</button>
+      </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>

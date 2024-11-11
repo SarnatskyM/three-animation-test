@@ -1,3 +1,10 @@
+const canvasContainer = document.getElementById("canvas");
+const renderer = new THREE.WebGLRenderer({
+  antialias: true,
+  canvas: canvasContainer,
+});
+renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -5,9 +12,6 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
 
 const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 directionalLight.position.set(5, 10, 7);
@@ -59,6 +63,69 @@ document
 document
   .getElementById("hetag")
   .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
+
+document
+  .getElementById("light-intensity")
+  .addEventListener("input", (event) => {
+    directionalLight.intensity = event.target.value;
+  });
+
+document.getElementById("light-color").addEventListener("input", (event) => {
+  directionalLight.color.set(event.target.value);
+});
+
+function showModelInfo(name, description) {
+  document.getElementById("model-name").textContent = name;
+  document.getElementById("model-description").innerHTML = description;
+}
+
+document.getElementById("mex").addEventListener("click", () => {
+  loadModel("./assets/mex/scene.gltf");
+  showModelInfo(
+    "Mex",
+    "<h2>Макс - тип обычный</h2> <p>Frontend developer, PHP, JS</p> <p>Есть младший брат - Ренат</p>"
+  );
+});
+
+document.getElementById("edo").addEventListener("click", () => {
+  loadModel("./assets/mex/scene.gltf");
+  showModelInfo(
+    "Edo",
+    "<h2>Эдуард - тип черный</h2> <p>Backend developer, GO, Python</p> <p>Есть девушка...</p>"
+  );
+});
+
+document.getElementById("andrey").addEventListener("click", () => {
+  loadModel("./assets/mex/scene.gltf");
+  showModelInfo(
+    "Андрей старый",
+    "<h2>Андрей - тип старый</h2> <p>Backend developer, GO, RUST, Husky</p> <p>Триппер, музыкант</p> <p>Любит сосиски</p>"
+  );
+});
+
+document.getElementById("hetag").addEventListener("click", () => {
+  loadModel("./assets/mex/scene.gltf");
+  showModelInfo(
+    "Hetag",
+    "<h2>Хетаг - тип интеграция</h2> <p>Backend developer, GO</p> <p>Человек интеграция - рекорд 2000 интеграций</p> <p>Любит свою шестерку и не только...</p>"
+  );
+});
+
+document.getElementById("renat").addEventListener("click", () => {
+  loadModel("./assets/mex/scene.gltf");
+  showModelInfo(
+    "Renat",
+    "<h2>Ренат - тип сеньор</h2> <p>Frontend developer, JS</p> <p>Есть старший брат - Макс</p> <p>Говорит что Макс - личный менеджер</p>"
+  );
+});
+
+document.getElementById("reset").addEventListener("click", () => {
+  if (currentModel) {
+    currentModel.rotation.set(0, 0, 0);
+    currentModel.position.set(0, 1, 0);
+    controls.reset();
+  }
+});
 
 function animate() {
   requestAnimationFrame(animate);
