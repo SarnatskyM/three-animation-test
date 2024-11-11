@@ -46,23 +46,6 @@ function loadModel(modelPath) {
 }
 
 document
-  .getElementById("mex")
-  .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
-document
-  .getElementById("edo")
-  .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
-document
-  .getElementById("andrey")
-  .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
-document
-  .getElementById("hetag")
-  .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
-
-document
-  .getElementById("hetag")
-  .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
-
-document
   .getElementById("light-intensity")
   .addEventListener("input", (event) => {
     directionalLight.intensity = event.target.value;
@@ -71,6 +54,10 @@ document
 document.getElementById("light-color").addEventListener("input", (event) => {
   directionalLight.color.set(event.target.value);
 });
+
+document.getElementById("background-color").addEventListener("input", (event) => {
+    scene.background = new THREE.Color(event.target.value);
+  });
 
 function showModelInfo(name, description) {
   document.getElementById("model-name").textContent = name;
@@ -117,14 +104,6 @@ document.getElementById("renat").addEventListener("click", () => {
   );
 });
 
-document.getElementById("reset").addEventListener("click", () => {
-  if (currentModel) {
-    currentModel.rotation.set(0, 0, 0);
-    currentModel.position.set(0, 1, 0);
-    controls.reset();
-  }
-});
-
 document.querySelectorAll(".link").forEach((link) => {
   link.addEventListener("click", (event) => {
     document
@@ -137,9 +116,15 @@ document.querySelectorAll(".link").forEach((link) => {
 
 function animate() {
   requestAnimationFrame(animate);
+
+  if (currentModel) {
+    currentModel.rotation.y += 0.02;
+  }
+
   controls.update();
   renderer.render(scene, camera);
 }
+
 animate();
 
 window.addEventListener("resize", () => {
