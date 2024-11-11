@@ -3,6 +3,7 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true,
   canvas: canvasContainer,
 });
+renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -126,13 +127,15 @@ document.getElementById("reset").addEventListener("click", () => {
   }
 });
 
-document.querySelectorAll('.link').forEach(link => {
-    link.addEventListener('click', (event) => {
-      document.querySelectorAll('.link').forEach(link => link.classList.remove('active'));
-      
-      event.target.classList.add('active');
-    });
+document.querySelectorAll(".link").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    document
+      .querySelectorAll(".link")
+      .forEach((link) => link.classList.remove("active"));
+
+    event.target.classList.add("active");
   });
+});
 
 function animate() {
   requestAnimationFrame(animate);
@@ -146,3 +149,4 @@ window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 });
+
