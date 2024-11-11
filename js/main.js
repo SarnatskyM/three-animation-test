@@ -20,28 +20,51 @@ const pointLight = new THREE.PointLight(0xffaa00, 1, 100);
 pointLight.position.set(-5, 5, 5);
 scene.add(pointLight);
 
-const loader = new THREE.GLTFLoader();
-loader.load("./assets/scene.gltf", (gltf) => {
-  const model = gltf.scene;
-  model.scale.set(1, 1, 1);
-  model.position.y = 1;
-  scene.add(model);
-});
-
 camera.position.z = 5;
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
-controls.screenSpacePanning = false;
+
+const loader = new THREE.GLTFLoader();
+let currentModel;
+
+function loadModel(modelPath) {
+  if (currentModel) {
+    scene.remove(currentModel);
+  }
+
+  loader.load(modelPath, (gltf) => {
+    currentModel = gltf.scene;
+    currentModel.scale.set(1, 1, 1);
+    currentModel.position.y = 0;
+    scene.add(currentModel);
+  });
+}
+
+loadModel("./assets/mex/scene.gltf");
+
+document
+  .getElementById("mex")
+  .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
+document
+  .getElementById("edo")
+  .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
+document
+  .getElementById("andrey")
+  .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
+document
+  .getElementById("hetag")
+  .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
+
+document
+  .getElementById("hetag")
+  .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
 
 function animate() {
   requestAnimationFrame(animate);
-
   controls.update();
-
   renderer.render(scene, camera);
 }
-
 animate();
 
 window.addEventListener("resize", () => {
