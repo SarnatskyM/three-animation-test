@@ -1,3 +1,4 @@
+
 body,
 html {
   margin: 0;
@@ -12,6 +13,7 @@ html {
 .container {
   display: flex;
   height: 100vh;
+  flex-direction: row;
 }
 
 .model-view {
@@ -103,4 +105,54 @@ html {
 
 #reset:hover {
   background-color: #777;
+}
+
+.link.active,
+.link:focus {
+  background-color: #888;
+  color: #fff;
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .model-view {
+    height: 70vh;
+  }
+
+  #canvas {
+    height: 100%;
+  }
+
+  .header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .link {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  #model-info {
+    font-size: 14px;
+  }
+
+  #controls label {
+    font-size: 13px;
+  }
+
+  #reset {
+    font-size: 14px;
+  }
 }

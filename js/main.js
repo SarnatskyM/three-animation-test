@@ -127,6 +127,14 @@ document.getElementById("reset").addEventListener("click", () => {
   }
 });
 
+document.querySelectorAll('.link').forEach(link => {
+    link.addEventListener('click', (event) => {
+      document.querySelectorAll('.link').forEach(link => link.classList.remove('active'));
+      
+      event.target.classList.add('active');
+    });
+  });
+
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
