@@ -45,8 +45,6 @@ function loadModel(modelPath) {
   });
 }
 
-loadModel("./assets/mex/scene.gltf");
-
 document
   .getElementById("mex")
   .addEventListener("click", () => loadModel("./assets/mex/scene.gltf"));
